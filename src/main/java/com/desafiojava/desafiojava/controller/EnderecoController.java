@@ -1,9 +1,7 @@
 package com.desafiojava.desafiojava.controller;
 
-import com.desafiojava.desafiojava.model.Endereco;
-import com.desafiojava.desafiojava.repository.EnderecoRepository;
+import com.desafiojava.desafiojava.Endereco;
 import com.desafiojava.desafiojava.service.EnderecoService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

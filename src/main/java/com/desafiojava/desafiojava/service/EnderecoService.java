@@ -1,6 +1,6 @@
 package com.desafiojava.desafiojava.service;
 
-import com.desafiojava.desafiojava.model.Endereco;
+import com.desafiojava.desafiojava.Endereco;
 import com.desafiojava.desafiojava.repository.EnderecoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
