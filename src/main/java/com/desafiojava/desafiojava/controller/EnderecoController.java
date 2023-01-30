@@ -1,30 +1,32 @@
 package com.desafiojava.desafiojava.controller;
 
-import com.desafiojava.desafiojava.Endereco;
+import com.desafiojava.desafiojava.model.Endereco;
 import com.desafiojava.desafiojava.service.EnderecoService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequiredArgsConstructor
 public class EnderecoController {
 
-    private final EnderecoService enderecoService;
+    @Autowired
+    EnderecoService enderecoService = new EnderecoService();
 
-    @GetMapping("/endereco")
-    public List<Endereco> getAllEnderecos() {
-        return enderecoService.getAll();
+    @PostMapping("/pessoa/{id}/endereco")
+    public ResponseEntity<Endereco> criarEndereco(@PathVariable Long id, @RequestBody Endereco endereco){
+        return ResponseEntity.status(HttpStatus.CREATED).body(enderecoService.criarEndereco(id, endereco));
     }
 
-    public Optional<Endereco> getEnderecoById(@PathVariable Long id) {
-        return Optional.ofNullable(enderecoService.getById(id));
+    @GetMapping("/pessoa/{id}/endereco")
+    public ResponseEntity<List<Endereco>> listarEnderecos(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(enderecoService.listarEnderecos(id));
     }
 
-    @PostMapping("/endereco")
-    public Endereco createEndereco(@RequestBody Endereco endereco) {
-        return enderecoService.create(endereco);
+    @GetMapping("/pessoa/{id}/endereco/principal")
+    public ResponseEntity<Endereco> consultarEnderecoPrincipal(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(enderecoService.consultarEnderecoPrincipal(id));
     }
 }
